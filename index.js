@@ -11,7 +11,7 @@ const port = 3001;
 
 const configuration = new Configuration({
   organization: "org-9WevQbvggItOcNJtMQyQhS4L",
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
@@ -20,14 +20,17 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/", async (req, res) => {
+  const { message } = req.body;
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "Say this is a test",
-    max_tokens: 7,
+    prompt: `${message}`,
+    max_tokens: 10,
     temperature: 0,
   });
   console.log(response.data);
-  res.json({ message: "Hello World!" });
+  if (response.data.choices[0].text) {
+    res.json({ message: response.data.choices[0].text });
+  }
 });
 
 app.listen(port, () => {
