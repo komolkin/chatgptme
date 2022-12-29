@@ -7,11 +7,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const port = 3001;
+const port = 5000;
 
 const configuration = new Configuration({
   organization: "org-9WevQbvggItOcNJtMQyQhS4L",
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
@@ -40,5 +40,7 @@ app.post("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at ${port}`);
 });
+
+module.exports = app;
