@@ -11,7 +11,7 @@ const port = 3001;
 
 const configuration = new Configuration({
   organization: "org-9WevQbvggItOcNJtMQyQhS4L",
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
@@ -23,8 +23,14 @@ app.post("/", async (req, res) => {
   const { message } = req.body;
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `${message}`,
-    max_tokens: 10,
+    prompt: `Pretend you are Kevin Durant.
+    Answer with motivational content.
+    Kevin: How can I help you today?
+    Person: I want some motivation.
+    Kevin: You are a champion, consistency is a key.
+    Person: ${message}?
+    Kevin:`,
+    max_tokens: 100,
     temperature: 0,
   });
   console.log(response.data);
