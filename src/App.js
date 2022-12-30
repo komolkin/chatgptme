@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import "./App.css";
+import "inter-ui/inter.css";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -22,20 +23,24 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Chat with Kevin Durant</h1>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={message}
-          placeholder="Ask Kevin Durant a question"
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
-      {response && (
-        <div>
-          <b>KD:</b> {response}
-        </div>
-      )}
+      <div className="form">
+        <h1>DMKD</h1>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            value={message}
+            placeholder="Ask Kevin Durant a question"
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+          <button type="submit">Submit</button>
+          <div className="response">
+            {response && (
+              <div>
+                <b>KD:</b> {response}
+              </div>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
